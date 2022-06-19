@@ -1,4 +1,13 @@
-#Fri Jun 17 20:31:41 IST 2022
-base.0=/home/bliss/Documents/projects/netflix_clone_app/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-renamed.0=classes.dex
+#Sat Jun 18 18:01:33 IST 2022
+path.3=15/classes.dex
+path.2=1/classes.dex
+path.1=0/classes.dex
 path.0=classes.dex
+base.3=/home/bliss/Documents/projects/netflix_clone_app/build/app/intermediates/dex/debug/mergeProjectDexDebug/15/classes.dex
+base.2=/home/bliss/Documents/projects/netflix_clone_app/build/app/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
+base.1=/home/bliss/Documents/projects/netflix_clone_app/build/app/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.0=/home/bliss/Documents/projects/netflix_clone_app/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex

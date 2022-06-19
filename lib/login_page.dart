@@ -14,12 +14,23 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    appBar: AppBar(
+      backgroundColor: Colors.transparent,
+      title: Center(
+          child: Padding(
+            padding: EdgeInsets.only(top: 20.h),
+            child: Image.asset('lib/assets/logo.png',
+            width: 130.w,
+            ),
+          ),
+        ),
+    ),
     backgroundColor: Colors.black,
     body: SafeArea(
     child:Center(
       child: SizedBox(
         width: 300.w,
-        height: 320.h,
+        height: 345.h,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -87,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w800
                 ))), 
-              SizedBox(height: 30.h),
+              const Expanded(child: SizedBox()),
               Align(
               alignment: Alignment.center,
               child: Text('Forget Your Password?',style: TextStyle(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:netflix_clone_app/customs/show_list_modal.dart';
+
+import 'functions/functions.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,6 +12,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,58 +29,133 @@ class _HomePageState extends State<HomePage> {
             actions: [
               const Spacer(),
               Image.asset('lib/assets/Netflix-logo-on-transparent-background-PNG.png',
-              width: 40.w,
-              height:40.w,
+              width: 33.w,
+              height:33.w,
               ),
               const Spacer(),
-              Text('TV Shows',
-              style: TextStyle(
-              color: Colors.white,
-              fontSize: 17.sp,
-              fontWeight: FontWeight.w600
+              Align(
+                alignment: Alignment.center,
+                child: Text('TV Shows',
+                style: TextStyle(
+                color: Colors.white,
+                fontSize: 17.sp,
+                fontWeight: FontWeight.w600
+                ),
+                ),
               ),
+              const Spacer(flex: 2),
+              Align(
+                alignment: Alignment.center,
+                child: Text('Movies',
+                style: TextStyle(
+                color: Colors.white,
+                fontSize: 17.sp,
+                fontWeight: FontWeight.w600
+                ),
+                ),
               ),
               const Spacer(),
-              Text('Movies',
-              style: TextStyle(
-              color: Colors.white,
-              fontSize: 17.sp,
-              fontWeight: FontWeight.w600
+              Align(
+                alignment: Alignment.center,
+                child: Text('My List',
+                style: TextStyle(
+                color: Colors.white,
+                fontSize: 17.sp,
+                fontWeight: FontWeight.w600
+                ),
+                ),
               ),
-              ),
-              const Spacer(),
-              Text('My List',
-              style: TextStyle(
-              color: Colors.white,
-              fontSize: 17.sp,
-              fontWeight: FontWeight.w600
-              ),
-              ),
-              const Spacer()
+              const Spacer(flex: 2)
             ],
-            expandedHeight: 560.0,
+            expandedHeight: 550.0,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-              'lib/assets/demo.jpg',
-              fit: BoxFit.fill,
+              titlePadding: EdgeInsets.zero,
+              title: Padding(
+                padding: EdgeInsets.only(bottom: 15.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.add,color: Colors.white,size: 17.sp),
+                    SizedBox(height: 3.h),
+                     Text('My List',
+                      style:TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 6.sp
+                      ))
+                  ],
+                ),
+                  SizedBox(
+                  width: 65.w,
+                  height: 28.h,
+                  child: TextButton(
+                  onPressed: (){},
+                  style: ButtonStyle(
+                    backgroundColor:MaterialStateProperty.all(Colors.white)
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(Icons.play_arrow,color: Colors.black,size: 13.sp,),
+                      Text('Play',
+                      style:TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 10.sp
+                      )),
+                    ],
+                  ) 
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.info_outline,color: Colors.white,size: 17.sp),
+                    SizedBox(height: 3.h),
+                     Text('Play',
+                      style:TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 6.sp
+                      ))
+                  ],
+                ),
+                ],
+                ),
+              ),
+              background: FutureBuilder(
+                future: Functions.returncontroller(3),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if(snapshot.data==null){
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 7,
+                        color: Colors.white,
+                      ),
+                    );
+                  }
+                  return Image.network('https://image.tmdb.org/t/p/w500${snapshot.data[0]['poster_path']}',
+                  fit: BoxFit.cover,
+                  );
+                },
               ),
             ),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
+              childCount: 4,
               (BuildContext context, int index) {
-                return Container(
-                  color: index.isOdd ? Colors.white : Colors.black12,
-                  height: 100.0,
-                  child: Center(
-                    child: Text('$index', textScaleFactor: 5),
-                  ),
-                );
+                return ShowListModel(name: listnames[index],index:index);
               },
-              childCount: 20,
             ),
           ),
         ],
       ));
   }
+  List<String>listnames=['Trending Movies','Popular Movies','Popular Shows','Top Rated Shows',];
 }

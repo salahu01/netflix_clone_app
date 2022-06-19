@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:netflix_clone_app/login_page.dart';
-
-import 'home_page.dart';
+import 'package:netflix_clone_app/splash_screen.dart';
+import 'login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,11 +15,11 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: (context, child) {
         return const MaterialApp(
-          // home: LoginPage(),
-          home: HomePage(),
+          debugShowCheckedModeBanner: false,
+          home: SplashScreen(),
         );
       },
-      // designSize: Size(width, height),
+      designSize: const Size(360.0 , 764.0),
       );
   }
 }
